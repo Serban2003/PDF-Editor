@@ -1,0 +1,42 @@
+﻿<Window x:Class="PDF_Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:pages="clr-namespace:PDF_Editor.Pages"
+        xmlns:local="clr-namespace:PDF_Editor"
+        mc:Ignorable="d"
+        Title="PDF Editor v0.1" Height="450" Width="800"
+        Background="{DynamicResource ApplicationBackgroundBrush}">
+
+    <Grid>
+        <ui:NavigationView x:Name="RootNavigation" IsBackButtonVisible="Collapsed" OpenPaneLength="150" Grid.Row="1" FrameMargin="0, -33, 0, 0">
+            <ui:NavigationView.Header>
+                <ui:BreadcrumbBar
+      Margin="42,32,0,0"
+      FontSize="28"
+      FontWeight="DemiBold"/>
+            </ui:NavigationView.Header>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="Home" TargetPageType="{x:Type pages:HomePage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Home24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Edit" TargetPageType="{x:Type pages:EditPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="Settings" TargetPageType="{x:Type pages:SettingsPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Settings24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
+    </Grid>
+</Window>

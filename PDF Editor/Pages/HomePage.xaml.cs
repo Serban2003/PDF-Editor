@@ -1,0 +1,57 @@
+﻿using Microsoft.Win32;
+using System.Threading;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace PDF_Editor.Pages
+{
+    /// <summary>
+    /// Interaction logic for HomePage.xaml
+    /// </summary>
+    public partial class HomePage : Page
+    {
+        public HomePage()
+        {
+            InitializeComponent();
+        }
+
+        private async void OpenPdf_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OpenFileDialog
+            {
+                Filter = "PDF Files (*.pdf)|*.pdf",
+                Title = "Select a PDF file"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                // Right now, just show which file was chosen
+                SelectedFileText.Text = $"{Path.GetFileName(dlg.FileName)}";
+
+                // Start loading UI
+                OpenBtn.IsHitTestVisible = false;
+                OpenIcon.Visibility = Visibility.Collapsed;
+                OpenSpinner.Visibility = Visibility.Visible;
+                OpenBtnText.Text = "Opening…";
+
+                await Task.Delay(1500);
+
+                try
+                {
+                    (Application.Current.MainWindow as MainWindow)?.NavigateToEdit(dlg.FileName);
+                }
+                catch
+                {
+                    // If navigation fails, reset button UI
+                    OpenSpinner.Visibility = Visibility.Collapsed;
+                    OpenIcon.Visibility = Visibility.Visible;
+                    OpenBtnText.Text = "Open PDF";
+                    OpenBtn.IsHitTestVisible = true;
+                    throw;
+                }
+            }
+        }
+    }
+}
