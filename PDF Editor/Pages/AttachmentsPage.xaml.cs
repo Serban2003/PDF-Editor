@@ -332,8 +332,7 @@ namespace PDF_Editor.Pages
             var path = _pdf.FilePath;
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
             {
-                PdfPreview.CoreWebView2?.NavigateToString(
-                    "<html><body style='color:#888;font-family:Segoe UI;padding:24px'>No PDF selected</body></html>");
+                PdfPreview.CoreWebView2?.NavigateToString("");
                 return;
             }
 

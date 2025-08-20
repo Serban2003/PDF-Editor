@@ -1,8 +1,7 @@
 ﻿<Page x:Class="PDF_Editor.Pages.EditPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      Background="{DynamicResource ApplicationBackgroundBrush}">
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
     <Grid Margin="24">
         <StackPanel>
             <TextBlock Text="Edit"
