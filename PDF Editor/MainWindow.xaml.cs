@@ -1,5 +1,4 @@
-﻿using PDF_Editor.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -50,6 +49,10 @@ namespace PDF_Editor
                     sender.Navigate(typeof(Pages.EditPage));
                     break;
 
+                case "Attachments":
+                    sender.Navigate(typeof(Pages.AttachmentsPage));
+                    break;
+
                 case "Settings":
                     sender.Navigate(typeof(Pages.SettingsPage));
                     break;
@@ -58,7 +61,7 @@ namespace PDF_Editor
         public void NavigateToEdit(string pdfPath)
         {
             // Navigate directly to EditPage and pass the PDF path
-            RootNavigation.Navigate(typeof(EditPage), pdfPath);
+            RootNavigation.Navigate(typeof(Pages.EditPage), pdfPath);
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Windows;
 using System.Windows.Media;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
+using PDF_Editor.Services;
 
 namespace PDF_Editor
 {
@@ -10,8 +13,16 @@ namespace PDF_Editor
     /// </summary>
     public partial class App : Application
     {
+        public static IHost AppHost { get; private set; } = null!;
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppHost = Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
+                {
+                    services.AddSingleton<IPdfSession, PdfSession>();
+                    // services.AddSingleton<MainWindow>(); // if you want to resolve it too
+                })
+                .Build();
             base.OnStartup(e);
 
             // Force Dark theme at startup

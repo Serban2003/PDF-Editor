@@ -7,7 +7,7 @@
         xmlns:pages="clr-namespace:PDF_Editor.Pages"
         xmlns:local="clr-namespace:PDF_Editor"
         mc:Ignorable="d"
-        Title="PDF Editor v0.1" Height="450" Width="800"
+        Title="PDF Editor v0.1" Height="600" Width="900" MinWidth="900" MinHeight="500"
         Background="{DynamicResource ApplicationBackgroundBrush}">
 
     <Grid>
@@ -26,7 +26,12 @@
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="Edit" TargetPageType="{x:Type pages:EditPage}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                        <ui:SymbolIcon Symbol="Edit24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Attachments" TargetPageType="{x:Type pages:AttachmentsPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Attach24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>

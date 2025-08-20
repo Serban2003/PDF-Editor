@@ -42,7 +42,7 @@
         </ui:Button>
         <TextBlock x:Name="SelectedFileText"
                    Grid.Row="2"
-                   Text=""
+                   Text="{Binding FileName}"
                    TextWrapping="Wrap"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                    HorizontalAlignment="Center"/>
