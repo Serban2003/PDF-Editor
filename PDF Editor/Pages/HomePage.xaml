@@ -8,10 +8,31 @@
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="12"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ui:Button x:Name="OpenBtn"
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+            <!-- Logo -->
+            <Image Source="/Assets/app_logo.png"
+               Width="128"
+               Height="128"
+               Stretch="Uniform"
+               Margin="0, 0, 0, 10"
+               HorizontalAlignment="Center"/>
+            <TextBlock Text="Welcome to PDF Editor"
+           FontSize="32"
+           FontWeight="Bold"
+           Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+           HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Manage, preview, and attach files to your PDFs with ease."
+               FontSize="16"
+               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+               Margin="0,8,0,40"
+               HorizontalAlignment="Center"/>
+        </StackPanel>
+            <ui:Button x:Name="OpenBtn"
                    Style="{StaticResource {x:Type ui:Button}}"
                    Appearance="Primary"
                    Click="OpenPdf_Click"
@@ -20,6 +41,7 @@
                    CornerRadius="25"
                    Cursor="Hand"
                    HorizontalAlignment="Center"
+                       Grid.Row="1"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <!-- Normal icon -->
@@ -41,7 +63,7 @@
             </StackPanel>
         </ui:Button>
         <TextBlock x:Name="SelectedFileText"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    Text="{Binding FileName}"
                    TextWrapping="Wrap"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"

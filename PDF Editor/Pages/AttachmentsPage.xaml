@@ -31,6 +31,8 @@
                    Padding="15,8"
                    Cursor="Hand"
                    HorizontalAlignment="Center"
+                    FontWeight="DemiBold"
+                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                    Margin="0,10,0,10">
                     <ui:Button.Icon>
                         <ui:SymbolIcon x:Name="OpenIcon" Symbol="FolderOpen24"/>
@@ -74,7 +76,11 @@
               HorizontalAlignment="Right"
               Margin="0,0,0,12">
                 <ui:Button Content="Add Attachment"
+                           FontWeight="DemiBold"
+Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                Click="AddAttachment_Click"
+                           Cursor="Hand"
+                           Padding="15, 8"
                Appearance="Primary"/>
             </StackPanel>
 

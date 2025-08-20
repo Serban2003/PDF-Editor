@@ -27,7 +27,7 @@ namespace PDF_Editor
 
             // Force Dark theme at startup
             ApplicationThemeManager.Apply(ApplicationTheme.Dark, WindowBackdropType.Mica);
-            ApplicationAccentColorManager.Apply(Color.FromRgb(0xFF, 0x80, 0x00),
+            ApplicationAccentColorManager.Apply(Color.FromRgb(0xFF, 0x6F, 0x00),
                                              ApplicationTheme.Dark,
                                              false);
         }

@@ -7,6 +7,7 @@
         xmlns:pages="clr-namespace:PDF_Editor.Pages"
         xmlns:local="clr-namespace:PDF_Editor"
         mc:Ignorable="d"
+        Icon="Assets/app_logo.ico"
         Title="PDF Editor v0.1" Height="600" Width="900" MinWidth="900" MinHeight="500"
         Background="{DynamicResource ApplicationBackgroundBrush}">
 

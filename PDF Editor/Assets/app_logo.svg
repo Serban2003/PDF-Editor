@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: orange;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Arial-BoldMT, Arial;
+        font-size: 121.22px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #ff8000;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect class="cls-3" width="520" height="520"/>
+    <path class="cls-4" d="m303,162V5h-169.89c-36.24,0-65.61,29.38-65.61,65.61v378.78c0,36.24,29.38,65.61,65.61,65.61h253.78c36.24,0,65.61-29.38,65.61-65.61V162h-149.5Z"/>
+    <g>
+      <polygon class="cls-1" points="303 4.5 303 11.22 309.36 11.22 303 4.5"/>
+      <polygon class="cls-1" points="452 162 436.39 145.5 436.39 162 452 162"/>
+      <polygon class="cls-1" points="436.39 162 436.39 145.5 309.36 11.22 303 11.22 303 162 436.39 162"/>
+    </g>
+    <text class="cls-2" transform="translate(136.19 383.37) scale(1.03 1)"><tspan x="0" y="0">PDF</tspan></text>
+  </g>
+</svg>
