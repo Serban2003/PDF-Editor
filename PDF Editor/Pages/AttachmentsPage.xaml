@@ -24,7 +24,8 @@
 
             <!-- Actions + file info -->
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="0,8,0,8">
-                <ui:Button Content="Select PDF"
+                <ui:Button
+                           Style="{StaticResource {x:Type ui:Button}}"
                    Click="SelectPdf_Click"
                    Appearance="Primary"
                    CornerRadius="15"
@@ -33,10 +34,17 @@
                    HorizontalAlignment="Center"
                     FontWeight="DemiBold"
                     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                   Margin="0,10,0,10">
-                    <ui:Button.Icon>
+
+                   Margin="0,10" BorderBrush="{x:Null}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        <!-- Normal icon -->
                         <ui:SymbolIcon x:Name="OpenIcon" Symbol="FolderOpen24"/>
-                    </ui:Button.Icon>
+                        <!-- Text -->
+                        <TextBlock
+       Text="Open PDF"
+       VerticalAlignment="Center"
+       Margin="5, 0, 0, 0"/>
+                    </StackPanel>
                 </ui:Button>
 
                 <TextBlock Text="Current PDF"
@@ -50,12 +58,13 @@
                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
                 <wpf:WebView2 x:Name="PdfPreview"
                   Width="300"
-                  Height="350"
+                  Height="345"
+                  DefaultBackgroundColor="Transparent"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"/>
             </StackPanel>
 
-            
+
 
         </DockPanel>
 
@@ -75,13 +84,25 @@
               Orientation="Horizontal"
               HorizontalAlignment="Right"
               Margin="0,0,0,12">
-                <ui:Button Content="Add Attachment"
+                <ui:Button
+                           Appearance="Primary"
+                           Style="{StaticResource {x:Type ui:Button}}"
                            FontWeight="DemiBold"
 Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                Click="AddAttachment_Click"
                            Cursor="Hand"
                            Padding="15, 8"
-               Appearance="Primary"/>
+             >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+
+                        <!-- Text -->
+                        <TextBlock
+       Text="Add Attachment"
+     
+       VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ui:Button>
             </StackPanel>
 
             <!-- List area (fills leftover space, no outer ScrollViewer) -->

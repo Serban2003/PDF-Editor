@@ -30,6 +30,8 @@ namespace PDF_Editor
             ApplicationAccentColorManager.Apply(Color.FromRgb(0xFF, 0x6F, 0x00),
                                              ApplicationTheme.Dark,
                                              false);
+            // --- Global brush overrides (affect all ui:Button) ---
+            var white = new SolidColorBrush(Colors.White); white.Freeze();
         }
     }
 }
