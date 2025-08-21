@@ -1,6 +1,8 @@
-﻿using System;
+﻿using PDF_Editor.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +24,18 @@ namespace PDF_Editor
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string WindowTitle { get; }
         public MainWindow()
         {
+            var version = Assembly.GetEntryAssembly()?
+            .GetName().Version?.ToString(3) ?? "1.0.0";
+
+            WindowTitle = $"PDF Editor v{version}";
+            DataContext = this;
             InitializeComponent();
             RootNavigation.SelectionChanged += new TypedEventHandler<NavigationView, RoutedEventArgs>(RootNavigation_SelectionChanged);
-            RootNavigation.Loaded += RootNavigation_Loaded; ;
+
+            RootNavigation.Loaded += RootNavigation_Loaded; 
         }
 
         private void RootNavigation_Loaded(object sender, RoutedEventArgs e)

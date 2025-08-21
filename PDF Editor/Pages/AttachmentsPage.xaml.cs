@@ -16,6 +16,7 @@ using iText.Kernel.Pdf.Filespec;
 using System.Drawing.Imaging;
 using Microsoft.Web.WebView2.Core;
 using System.Threading.Tasks;
+using PDF_Editor.Windows;
 
 namespace PDF_Editor.Pages
 {
@@ -95,8 +96,13 @@ namespace PDF_Editor.Pages
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error adding attachment: {ex.Message}",
-                        "Attachments", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(
+                        owner: System.Windows.Window.GetWindow(this),                                 // the current Window (MainWindow, etc.)
+                        title: "Attachments",                        // window title / header
+                        message: $"Error adding attachment: {ex.Message}",
+                        icon: CustomMessageBoxIcon.Error,            // equivalent to MessageBoxImage.Error
+                        primaryText: "OK"                            // equivalent to MessageBoxButton.OK
+                    );
                 }
             }
         }
@@ -108,18 +114,26 @@ namespace PDF_Editor.Pages
 
             if (string.IsNullOrEmpty(_pdf.FilePath) || !File.Exists(_pdf.FilePath))
             {
-                MessageBox.Show("No PDF is loaded.", "Attachments",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox.Show(
+                        owner: System.Windows.Window.GetWindow(this),                                 // the current Window (MainWindow, etc.)
+                        title: "Attachments",                        // window title / header
+                        message: $"No PDF is loaded.",
+                        icon: CustomMessageBoxIcon.Error,            // equivalent to MessageBoxImage.Error
+                        primaryText: "OK"                            // equivalent to MessageBoxButton.OK
+                );
                 return;
             }
+            var owner = Window.GetWindow(this);
+            var confirm = CustomMessageBox.Show(
+                owner,
+                title: "Confirm Delete",
+                message: $"Delete attachment \"{item.Name}\"?",
+                icon: CustomMessageBoxIcon.Question,
+                primaryText: "Delete",       // acts like "Yes"
+                secondaryText: "Cancel"      // acts like "No"
+            );
 
-            var confirm = MessageBox.Show(
-                $"Delete attachment \"{item.Name}\"?",
-                "Confirm Delete",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-            if (confirm != MessageBoxResult.Yes) return;
+            if (confirm != CustomMessageBoxResult.Primary) return;
 
             try
             {
@@ -128,8 +142,13 @@ namespace PDF_Editor.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to delete attachment:\n{ex.Message}",
-                    "Attachments", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(
+                    owner,
+                    title: "Attachments",
+                    message: $"Failed to delete attachment:\n{ex.Message}",
+                    icon: CustomMessageBoxIcon.Error,
+                    primaryText: "OK"
+                );
             }
         }
 
@@ -196,14 +215,20 @@ namespace PDF_Editor.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error reading attachments: {ex.Message}", "Attachments",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show(
+                    Window.GetWindow(this),
+                    title: "Attachments",
+                    message: $"Error reading attachments: {ex.Message}",
+                    icon: CustomMessageBoxIcon.Warning,   // equivalent to MessageBoxImage.Warning
+                    primaryText: "OK"
+                );
             }
         }
         private void AddAttachment(string pdfPath, string fileToAttach)
         {
             var tmp = Path.ChangeExtension(Path.GetTempFileName(), ".pdf");
 
+            //TODO: Add fallback for no opened PDF
             using var reader = new PdfReader(pdfPath);
             using var writer = new PdfWriter(tmp);
             using var pdfDoc = new iText.Kernel.Pdf.PdfDocument(reader, writer);
@@ -295,7 +320,7 @@ namespace PDF_Editor.Pages
             var env = await CoreWebView2Environment.CreateAsync();
             await PdfPreview.EnsureCoreWebView2Async(env);
 
-            var s = PdfPreview.CoreWebView2.Settings;
+            var s = PdfPreview.CoreWebView2!.Settings;
             s.AreDefaultContextMenusEnabled = false;
             s.AreDevToolsEnabled = false;
             s.IsStatusBarEnabled = false;
@@ -314,8 +339,13 @@ namespace PDF_Editor.Pages
                     if (!e.IsSuccess)
                     {
                         // Surface the reason so you know why it failed
-                        MessageBox.Show($"PDF preview navigation failed: {e.WebErrorStatus}",
-                            "PDF Preview", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        CustomMessageBox.Show(
+                            Window.GetWindow(this),
+                            title: "PDF Preview",
+                            message: $"PDF preview navigation failed: {e.WebErrorStatus}",
+                            icon: CustomMessageBoxIcon.Warning,   // equivalent to MessageBoxImage.Warning
+                            primaryText: "OK"
+                        );
                         return;
                     }
                     // Hide outer scrollbars
